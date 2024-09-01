@@ -1,26 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // Create action for creating a user
-export const createUser = createAsyncThunk(
-  'createUser',
-  async (data, { rejectWithValue }) => {
-    try {
-      const response = await fetch('https://66cf4eb8901aab248421b650.mockapi.io/crud', {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+export const createUser = createAsyncThunk('createUser', async (data, { rejectWithValue }) => {
+  try {
+    const response = await fetch('https://66cf4eb8901aab248421b650.mockapi.io/crud', {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
 
-      if (!response.ok) {
-        throw new Error('Failed to create user');
-      }
-
-      const result = await response.json();
-      return result;
-    } catch (error) {
-      return rejectWithValue(error.message);
+    if (!response.ok) {
+      throw new Error('Failed to create user');
     }
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return rejectWithValue(error.message);
   }
+}
 );
 
 // Read action for showing users
