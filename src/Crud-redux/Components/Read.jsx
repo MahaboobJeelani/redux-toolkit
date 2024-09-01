@@ -26,11 +26,11 @@ const Read = () => {
     return (
         <div>
             {showPopup ? (<CustomModel id={id} setShowPopup={setShowPopup} showPopup={showPopup} />) : ''}
-            <input type="text" checked={filterGender === ''} name='gender' type='radio' value='' onChange={(e) => setFilterGender(e.target.value)} />
+            <input checked={filterGender === ''} name='gender' type='radio' value='' onChange={(e) => setFilterGender(e.target.value)} />
             <label htmlFor="">All</label>
-            <input type="text" checked={filterGender === 'Male'} name='gender' type='radio' value='Male' onChange={(e) => setFilterGender(e.target.value)} />
+            <input checked={filterGender === 'Male'} name='gender' type='radio' value='Male' onChange={(e) => setFilterGender(e.target.value)} />
             <label htmlFor="">Male</label>
-            <input type="text" checked={filterGender === 'Female'} name='gender' type='radio' value='Female' onChange={(e) => setFilterGender(e.target.value)} />
+            <input checked={filterGender === 'Female'} name='gender' type='radio' value='Female' onChange={(e) => setFilterGender(e.target.value)} />
             <label htmlFor="">Female</label>
 
             {
@@ -42,14 +42,14 @@ const Read = () => {
                     }
                     return user.name.toLowerCase().includes(searchData.toLowerCase())
                 }).filter(user => {
-                    if (filterGender === '') {
-                        return user
-                    }
                     if (filterGender === "Male") {
                         return user.gender.includes(filterGender)
                     }
                     if (filterGender === 'Female') {
                         return user.gender.includes(filterGender)
+                    }
+                    else {
+                        return user
                     }
                 })
 
